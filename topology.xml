@@ -1,0 +1,19 @@
+<config>
+	<interface hosts="coordinator" address="10.0.0.1" netmask="255.255.x.x"/>
+	<interface hosts="**" address="10.0.x.x" netmask="255.255.x.x"/>
+	<route hosts="coordinator" interface="wlan0" destination="*" gateway="*"/>
+	<route hosts="lamp* sensor*" destination="*" gateway="10.0.0.1"/>
+</config>
+
+<!--
+<config>
+	<interface hosts="coordinator" address="10.0.0.1" netmask="255.255.x.x"/>
+	<interface hosts="**" address="10.0.x.x" netmask="255.255.x.x"/>
+	<route hosts="coordinator" interface="wlan0" destination="*" gateway="*"/>
+	<route hosts="lamp* sensor*" destination="*" gateway="10.0.0.1"/>
+</config>
+
+<config>
+    <route hosts="*" destination="*" nextHop="*" interface="wlan0"/>
+</config>
+-->
