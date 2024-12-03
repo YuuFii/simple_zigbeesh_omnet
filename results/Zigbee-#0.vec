@@ -1,0 +1,2651 @@
+version 3
+run Zigbee-0-20241115-15:38:18-4336
+attr configname Zigbee
+attr datetime 20241115-15:38:18
+attr datetimef 20241115-153818
+attr experiment Zigbee
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network ZigbeeSH
+attr processid 4336
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config image-path ../inet4.5/images
+config network ZigbeeSH
+config sim-time-limit 100s
+config **.arp.typename GlobalArp
+config **.netmaskRoutes "\"\""
+config *.configurator.config "xmldoc(\"topology.xml\")"
+config *.configurator.addStaticRoutes true
+config *.configurator.optimizeRoutes true
+config *.coordinator.forwarding true
+config *.radioMedium.typename Ieee802154NarrowbandScalarRadioMedium
+config *.radioMedium.backgroundNoise.power -110dBm
+config *.radioMedium.propagation.typename ConstantSpeedPropagation
+config *.radioMedium.pathLoss.typename FreeSpacePathLoss
+config *.radioMedium.mediumLimitCache.maxCommunicationRange 10m
+config *.radioMedium.mediumLimitCache.maxInterferenceRange 15m
+config *.radioMedium.macAddressFilter true
+config *.sensor*.wlan[*].radio.typename Ieee802154NarrowbandScalarRadio
+config *.lamp*.wlan[*].radio.typename Ieee802154NarrowbandScalarRadio
+config *.coordinator.wlan[*].radio.typename Ieee802154NarrowbandScalarRadio
+config *.*.wlan[*].radio.transmitter.power 1mW
+config *.*.wlan[*].radio.receiver.sensitivity -85dBm
+config *.sensor*.numApps 1
+config *.sensor*.app[*].typename UdpBasicApp
+config *.sensor*.app[*].destAddresses "\"coordinator\""
+config *.sensor*.app[*].destPort 1000
+config *.sensor*.app[*].sendInterval "uniform(0.5s, 2s)"
+config *.sensor*.app[*].startTime uniform(0s,1s)
+config *.sensor*.app[*].messageLength 10Byte
+config *.sensor*.app[*].packetName "\"SensorData\""
+config *.coordinator.numApps 2
+config *.coordinator.app[0].typename UdpBasicApp
+config *.coordinator.app[0].destAddresses "\"lamp1 lamp2 lamp3 lamp4 lamp5 lamp6\""
+config *.coordinator.app[0].destPort 1000
+config *.coordinator.app[0].sourcePort 1001
+config *.coordinator.app[0].sendInterval 0.5s
+config *.coordinator.app[0].startTime exponential(1s)
+config *.coordinator.app[0].messageLength 10Byte
+config *.coordinator.app[0].packetName "\"ControlData\""
+config *.coordinator.app[1].typename UdpSink
+config *.coordinator.app[1].localPort 1000
+config *.lamp*.numApps 1
+config *.lamp*.app[0].typename UdpSink
+config *.lamp*.app[0].localPort 1000
+config *.visualizer.*.routingTableVisualizer[0].displayRoutingTables false
+config *.visualizer.*.routingTableVisualizer[0].displayRoutesIndividually false
+config *.visualizer.*.routingTableVisualizer[0].lineShift 0
+config *.visualizer.*.routingTableVisualizer[0].displayLabels false
+config *.visualizer.*.interfaceTableVisualizer[0].displayInterfaceTables false
+config *.visualizer.sceneVisualizer.descriptionFigure "\"title\""
+config *.visualizer.physicalLinkVisualizer.displayLinks true
+config *.visualizer.*.numDataLinkVisualizers 2
+config *.visualizer.*.dataLinkVisualizer[*].displayLinks true
+config *.visualizer.*.dataLinkVisualizer[0].*Color "\"green\""
+config *.visualizer.*.dataLinkVisualizer[0].nodeFilter "\"sensor* or coordinator\""
+config *.visualizer.*.dataLinkVisualizer[1].*Color "\"blue\""
+config *.visualizer.*.dataLinkVisualizer[1].nodeFilter "\"lamp* or coordinator\""
+config *.visualizer.*.mediumVisualizer.displaySignals true
+config *.visualizer.*.mediumVisualizer.displayReceptions true
+config *.visualizer.*.mediumVisualizer.displayTransmissions true
+config *.visualizer.*.mediumVisualizer.displayCommunicationRanges true
+config *.visualizer.*.mediumVisualizer.displayInterferenceRanges true
+config *.visualizer.*.mediumVisualizer.signalColorAnimationSpeed 1
+config *.visualizer.*.mediumVisualizer.signalPropagationAnimationSpeed 1
+config *.visualizer.*.mediumVisualizer.signalTransmissionAnimationTime 1
+config *.visualizer.*.numStatisticVisualizers 2
+config *.visualizer.*.statisticVisualizer[*].zIndex 1
+config *.visualizer.*.statisticVisualizer[0].displayStatistics true
+config *.visualizer.*.statisticVisualizer[0].signalName "\"packetSent\""
+config *.visualizer.*.statisticVisualizer[0].statisticExpression "\"count\""
+config *.visualizer.*.statisticVisualizer[0].sourceFilter "\"**.coordinator.udp OR **.sensor*.udp\""
+config *.visualizer.*.statisticVisualizer[0].format "\"sent: %v pks\""
+config *.visualizer.*.statisticVisualizer[1].displayStatistics true
+config *.visualizer.*.statisticVisualizer[1].signalName "\"packetReceived\""
+config *.visualizer.*.statisticVisualizer[1].statisticExpression "\"count\""
+config *.visualizer.*.statisticVisualizer[1].sourceFilter "\"**.coordinator.udp OR **.lamp*.udp\""
+config *.visualizer.*.statisticVisualizer[1].format "\"rcvd: %v pks\""
+config *.visualizer.*.statisticVisualizer[2].displayStatistics true
+config *.visualizer.*.statisticVisualizer[2].signalName "\"throughput\""
+config *.visualizer.*.statisticVisualizer[2].statisticExpression "\"sum\""
+config *.visualizer.*.statisticVisualizer[2].sourceFilter "\"**.udp\""
+config *.visualizer.*.statisticVisualizer[2].format "\"throughput: %v bps\""
+config *.visualizer.*.statisticVisualizer[3].displayStatistics true
+config *.visualizer.*.statisticVisualizer[3].signalName "\"packetDelay\""
+config *.visualizer.*.statisticVisualizer[3].statisticExpression "\"mean\""
+config *.visualizer.*.statisticVisualizer[3].sourceFilter "\"**.udp\""
+config *.visualizer.*.statisticVisualizer[3].format "\"avg delay: %v s\""
+config *.visualizer.*.statisticVisualizer[4].displayStatistics true
+config *.visualizer.*.statisticVisualizer[4].signalName "\"packetLoss\""
+config *.visualizer.*.statisticVisualizer[4].statisticExpression "\"count\""
+config *.visualizer.*.statisticVisualizer[4].sourceFilter "\"**.udp\""
+config *.visualizer.*.statisticVisualizer[4].format "\"packet loss: %v\""
+config *.visualizer.*.statisticVisualizer[5].displayStatistics true
+config *.visualizer.*.statisticVisualizer[5].signalName "\"energyConsumption\""
+config *.visualizer.*.statisticVisualizer[5].statisticExpression "\"sum\""
+config *.visualizer.*.statisticVisualizer[5].sourceFilter "\"**.energyStorage\""
+config *.visualizer.*.statisticVisualizer[5].format "\"energy consumed: %v J\""
+config *.visualizer.*.statisticVisualizer[6].displayStatistics true
+config *.visualizer.*.statisticVisualizer[6].signalName "\"packetJitter\""
+config *.visualizer.*.statisticVisualizer[6].statisticExpression "\"mean\""
+config *.visualizer.*.statisticVisualizer[6].sourceFilter "\"**.udp\""
+config *.visualizer.*.statisticVisualizer[6].format "\"avg jitter: %v s\""
+
+vector 0 ZigbeeSH.sensor1.wlan[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 1 ZigbeeSH.sensor1.wlan[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 2 ZigbeeSH.sensor1.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 3 ZigbeeSH.sensor1.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 4 ZigbeeSH.sensor1.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 5 ZigbeeSH.sensor2.wlan[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 6 ZigbeeSH.sensor2.wlan[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 7 ZigbeeSH.sensor2.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 8 ZigbeeSH.sensor2.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 9 ZigbeeSH.sensor2.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 10 ZigbeeSH.sensor3.wlan[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 11 ZigbeeSH.sensor3.wlan[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 12 ZigbeeSH.sensor3.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 13 ZigbeeSH.sensor3.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 14 ZigbeeSH.sensor3.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 15 ZigbeeSH.sensor4.wlan[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 16 ZigbeeSH.sensor4.wlan[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 17 ZigbeeSH.sensor4.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 18 ZigbeeSH.sensor4.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 19 ZigbeeSH.sensor4.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 20 ZigbeeSH.sensor5.wlan[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 21 ZigbeeSH.sensor5.wlan[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 22 ZigbeeSH.sensor5.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 23 ZigbeeSH.sensor5.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 24 ZigbeeSH.sensor5.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 25 ZigbeeSH.lamp1.wlan[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 26 ZigbeeSH.lamp1.wlan[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 27 ZigbeeSH.lamp1.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 28 ZigbeeSH.lamp1.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 29 ZigbeeSH.lamp1.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 30 ZigbeeSH.lamp2.wlan[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 31 ZigbeeSH.lamp2.wlan[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 32 ZigbeeSH.lamp2.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 33 ZigbeeSH.lamp2.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 34 ZigbeeSH.lamp2.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 35 ZigbeeSH.lamp3.wlan[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 36 ZigbeeSH.lamp3.wlan[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 37 ZigbeeSH.lamp3.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 38 ZigbeeSH.lamp3.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 39 ZigbeeSH.lamp3.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 40 ZigbeeSH.lamp4.wlan[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 41 ZigbeeSH.lamp4.wlan[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 42 ZigbeeSH.lamp4.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 43 ZigbeeSH.lamp4.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 44 ZigbeeSH.lamp4.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 45 ZigbeeSH.lamp5.wlan[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 46 ZigbeeSH.lamp5.wlan[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 47 ZigbeeSH.lamp5.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 48 ZigbeeSH.lamp5.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 49 ZigbeeSH.lamp5.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 50 ZigbeeSH.lamp6.wlan[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 51 ZigbeeSH.lamp6.wlan[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 52 ZigbeeSH.lamp6.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 53 ZigbeeSH.lamp6.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 54 ZigbeeSH.lamp6.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 55 ZigbeeSH.coordinator.wlan[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 56 ZigbeeSH.coordinator.wlan[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 57 ZigbeeSH.coordinator.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 58 ZigbeeSH.coordinator.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 59 ZigbeeSH.coordinator.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 60 ZigbeeSH.sensor1.energyStorage powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 61 ZigbeeSH.sensor2.energyStorage powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 62 ZigbeeSH.sensor3.energyStorage powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 63 ZigbeeSH.sensor4.energyStorage powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 64 ZigbeeSH.sensor5.energyStorage powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 65 ZigbeeSH.lamp1.energyStorage powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 66 ZigbeeSH.lamp2.energyStorage powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 67 ZigbeeSH.lamp3.energyStorage powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 68 ZigbeeSH.lamp4.energyStorage powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 69 ZigbeeSH.lamp5.energyStorage powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 70 ZigbeeSH.lamp6.energyStorage powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 71 ZigbeeSH.coordinator.energyStorage powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 72 ZigbeeSH.sensor1.wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 73 ZigbeeSH.sensor1.wlan[0].radio.energyConsumer powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 74 ZigbeeSH.sensor2.wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 75 ZigbeeSH.sensor2.wlan[0].radio.energyConsumer powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 76 ZigbeeSH.sensor3.wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 77 ZigbeeSH.sensor3.wlan[0].radio.energyConsumer powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 78 ZigbeeSH.sensor4.wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 79 ZigbeeSH.sensor4.wlan[0].radio.energyConsumer powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 80 ZigbeeSH.sensor5.wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 81 ZigbeeSH.sensor5.wlan[0].radio.energyConsumer powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 82 ZigbeeSH.lamp1.wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 83 ZigbeeSH.lamp1.wlan[0].radio.energyConsumer powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 84 ZigbeeSH.lamp2.wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 85 ZigbeeSH.lamp2.wlan[0].radio.energyConsumer powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 86 ZigbeeSH.lamp3.wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 87 ZigbeeSH.lamp3.wlan[0].radio.energyConsumer powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 88 ZigbeeSH.lamp4.wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 89 ZigbeeSH.lamp4.wlan[0].radio.energyConsumer powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 90 ZigbeeSH.lamp5.wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 91 ZigbeeSH.lamp5.wlan[0].radio.energyConsumer powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 92 ZigbeeSH.lamp6.wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 93 ZigbeeSH.lamp6.wlan[0].radio.energyConsumer powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 94 ZigbeeSH.coordinator.wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+vector 95 ZigbeeSH.coordinator.wlan[0].radio.energyConsumer powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 96 ZigbeeSH.sensor1.wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 97 ZigbeeSH.sensor2.wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 98 ZigbeeSH.sensor3.wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 99 ZigbeeSH.sensor4.wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 100 ZigbeeSH.sensor5.wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 101 ZigbeeSH.lamp1.wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 102 ZigbeeSH.lamp2.wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 103 ZigbeeSH.lamp3.wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 104 ZigbeeSH.lamp4.wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 105 ZigbeeSH.lamp5.wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 106 ZigbeeSH.lamp6.wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 107 ZigbeeSH.coordinator.wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+vector 108 ZigbeeSH.sensor4.app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 109 ZigbeeSH.sensor4.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 110 ZigbeeSH.sensor4.wlan[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 111 ZigbeeSH.sensor4.energyStorage residualEnergyCapacity:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source residualEnergyCapacityChanged
+attr title "Residual energy capacity"
+attr unit J
+vector 112 ZigbeeSH.sensor4.wlan[0].radio transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+vector 113 ZigbeeSH.sensor4.wlan[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 114 ZigbeeSH.sensor4.wlan[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 115 ZigbeeSH.lamp2.energyStorage residualEnergyCapacity:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source residualEnergyCapacityChanged
+attr title "Residual energy capacity"
+attr unit J
+vector 116 ZigbeeSH.lamp3.energyStorage residualEnergyCapacity:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source residualEnergyCapacityChanged
+attr title "Residual energy capacity"
+attr unit J
+vector 117 ZigbeeSH.sensor2.energyStorage residualEnergyCapacity:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source residualEnergyCapacityChanged
+attr title "Residual energy capacity"
+attr unit J
+vector 118 ZigbeeSH.sensor5.energyStorage residualEnergyCapacity:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source residualEnergyCapacityChanged
+attr title "Residual energy capacity"
+attr unit J
+vector 119 ZigbeeSH.coordinator.energyStorage residualEnergyCapacity:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source residualEnergyCapacityChanged
+attr title "Residual energy capacity"
+attr unit J
+vector 120 ZigbeeSH.lamp5.energyStorage residualEnergyCapacity:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source residualEnergyCapacityChanged
+attr title "Residual energy capacity"
+attr unit J
+vector 121 ZigbeeSH.lamp4.energyStorage residualEnergyCapacity:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source residualEnergyCapacityChanged
+attr title "Residual energy capacity"
+attr unit J
+vector 122 ZigbeeSH.lamp6.energyStorage residualEnergyCapacity:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source residualEnergyCapacityChanged
+attr title "Residual energy capacity"
+attr unit J
+vector 123 ZigbeeSH.lamp1.energyStorage residualEnergyCapacity:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source residualEnergyCapacityChanged
+attr title "Residual energy capacity"
+attr unit J
+vector 124 ZigbeeSH.sensor1.energyStorage residualEnergyCapacity:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source residualEnergyCapacityChanged
+attr title "Residual energy capacity"
+attr unit J
+vector 125 ZigbeeSH.sensor3.energyStorage residualEnergyCapacity:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source residualEnergyCapacityChanged
+attr title "Residual energy capacity"
+attr unit J
+vector 126 ZigbeeSH.lamp2.wlan[0].mac packetDropNotAddressToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 127 ZigbeeSH.lamp3.wlan[0].mac packetDropNotAddressToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 128 ZigbeeSH.sensor2.wlan[0].mac packetDropNotAddressToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 129 ZigbeeSH.sensor5.wlan[0].mac packetDropNotAddressToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 130 ZigbeeSH.coordinator.wlan[0].radio transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+vector 131 ZigbeeSH.coordinator.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 132 ZigbeeSH.coordinator.app[1] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 133 ZigbeeSH.coordinator.app[1] endToEndDelay:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+vector 134 ZigbeeSH.coordinator.app[1] rcvdPkSeqNo:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source appPkSeqNo(packetReceived)
+attr title "received packet sequence number"
+vector 135 ZigbeeSH.lamp5.wlan[0].mac packetDropNotAddressToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 136 ZigbeeSH.lamp4.wlan[0].mac packetDropNotAddressToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 137 ZigbeeSH.lamp6.wlan[0].mac packetDropNotAddressToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 138 ZigbeeSH.lamp1.wlan[0].mac packetDropNotAddressToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 139 ZigbeeSH.sensor1.wlan[0].mac packetDropNotAddressToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 140 ZigbeeSH.sensor3.wlan[0].mac packetDropNotAddressToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 141 ZigbeeSH.sensor3.app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 142 ZigbeeSH.sensor3.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 143 ZigbeeSH.sensor3.wlan[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 144 ZigbeeSH.sensor3.wlan[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 145 ZigbeeSH.sensor3.wlan[0].radio transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+vector 146 ZigbeeSH.sensor3.wlan[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 147 ZigbeeSH.sensor3.wlan[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 148 ZigbeeSH.sensor3.wlan[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 149 ZigbeeSH.coordinator.app[1] throughput:vector ETV
+attr recordingmode vector
+attr source throughput(packetReceived)
+attr title throughput
+attr unit bps
+vector 150 ZigbeeSH.sensor4.wlan[0].mac packetDropNotAddressToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 151 ZigbeeSH.sensor5.app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 152 ZigbeeSH.sensor5.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 153 ZigbeeSH.sensor5.wlan[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 154 ZigbeeSH.sensor5.wlan[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 155 ZigbeeSH.sensor5.wlan[0].radio transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+vector 156 ZigbeeSH.sensor5.wlan[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 157 ZigbeeSH.sensor5.wlan[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 158 ZigbeeSH.sensor5.wlan[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 159 ZigbeeSH.coordinator.app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 160 ZigbeeSH.coordinator.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 161 ZigbeeSH.coordinator.wlan[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 162 ZigbeeSH.coordinator.wlan[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 163 ZigbeeSH.coordinator.wlan[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 164 ZigbeeSH.coordinator.wlan[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 165 ZigbeeSH.coordinator.wlan[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 166 ZigbeeSH.lamp2.wlan[0].radio transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+vector 167 ZigbeeSH.lamp2.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 168 ZigbeeSH.lamp2.app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 169 ZigbeeSH.lamp2.app[0] throughput:vector ETV
+attr recordingmode vector
+attr source throughput(packetReceived)
+attr title throughput
+attr unit bps
+vector 170 ZigbeeSH.lamp2.app[0] endToEndDelay:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+vector 171 ZigbeeSH.lamp2.app[0] rcvdPkSeqNo:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source appPkSeqNo(packetReceived)
+attr title "received packet sequence number"
+vector 172 ZigbeeSH.sensor1.app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 173 ZigbeeSH.sensor1.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 174 ZigbeeSH.sensor1.wlan[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 175 ZigbeeSH.sensor1.wlan[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 176 ZigbeeSH.sensor1.wlan[0].radio transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+vector 177 ZigbeeSH.sensor1.wlan[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 178 ZigbeeSH.sensor1.wlan[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 179 ZigbeeSH.sensor1.wlan[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+0	0	0	0
+0	0	0	0
+0	0	0	0
+0	0	0	0
+0	0	0	0
+0	358	0.84426574409	1
+0	360	0.84439374409	0
+1	0	0	0
+1	0	0	0
+1	0	0	0
+1	0	0	0
+1	0	0	0
+1	358	0.84426574409	304
+1	360	0.84439374409	0
+2	0	0	0
+3	0	0	0
+4	0	0	0
+5	0	0	0
+5	0	0	0
+5	0	0	0
+5	0	0	0
+5	0	0	0
+6	0	0	0
+6	0	0	0
+6	0	0	0
+6	0	0	0
+6	0	0	0
+7	0	0	0
+8	0	0	0
+9	0	0	0
+10	0	0	0
+10	0	0	0
+10	0	0	0
+10	0	0	0
+10	0	0	0
+10	109	0.384381708223	1
+10	111	0.385469708223	0
+11	0	0	0
+11	0	0	0
+11	0	0	0
+11	0	0	0
+11	0	0	0
+11	109	0.384381708223	304
+11	111	0.385469708223	0
+12	0	0	0
+13	0	0	0
+14	0	0	0
+15	0	0	0
+15	0	0	0
+15	0	0	0
+15	0	0	0
+15	0	0	0
+15	26	0.056712975726	1
+15	28	0.057800975726	0
+16	0	0	0
+16	0	0	0
+16	0	0	0
+16	0	0	0
+16	0	0	0
+16	26	0.056712975726	304
+16	28	0.057800975726	0
+17	0	0	0
+18	0	0	0
+19	0	0	0
+20	0	0	0
+20	0	0	0
+20	0	0	0
+20	0	0	0
+20	0	0	0
+20	192	0.477665111655	1
+20	194	0.477793111655	0
+21	0	0	0
+21	0	0	0
+21	0	0	0
+21	0	0	0
+21	0	0	0
+21	192	0.477665111655	304
+21	194	0.477793111655	0
+22	0	0	0
+23	0	0	0
+24	0	0	0
+25	0	0	0
+25	0	0	0
+25	0	0	0
+25	0	0	0
+25	0	0	0
+26	0	0	0
+26	0	0	0
+26	0	0	0
+26	0	0	0
+26	0	0	0
+27	0	0	0
+28	0	0	0
+29	0	0	0
+30	0	0	0
+30	0	0	0
+30	0	0	0
+30	0	0	0
+30	0	0	0
+31	0	0	0
+31	0	0	0
+31	0	0	0
+31	0	0	0
+31	0	0	0
+32	0	0	0
+32	302	0.644045229388	1
+33	0	0	0
+34	0	0	0
+35	0	0	0
+35	0	0	0
+35	0	0	0
+35	0	0	0
+35	0	0	0
+36	0	0	0
+36	0	0	0
+36	0	0	0
+36	0	0	0
+36	0	0	0
+37	0	0	0
+38	0	0	0
+39	0	0	0
+40	0	0	0
+40	0	0	0
+40	0	0	0
+40	0	0	0
+40	0	0	0
+41	0	0	0
+41	0	0	0
+41	0	0	0
+41	0	0	0
+41	0	0	0
+42	0	0	0
+43	0	0	0
+44	0	0	0
+45	0	0	0
+45	0	0	0
+45	0	0	0
+45	0	0	0
+45	0	0	0
+46	0	0	0
+46	0	0	0
+46	0	0	0
+46	0	0	0
+46	0	0	0
+47	0	0	0
+48	0	0	0
+49	0	0	0
+50	0	0	0
+50	0	0	0
+50	0	0	0
+50	0	0	0
+50	0	0	0
+51	0	0	0
+51	0	0	0
+51	0	0	0
+51	0	0	0
+51	0	0	0
+52	0	0	0
+53	0	0	0
+54	0	0	0
+55	0	0	0
+55	0	0	0
+55	0	0	0
+55	0	0	0
+55	0	0	0
+55	275	0.641709172678	1
+55	277	0.642157172678	0
+56	0	0	0
+56	0	0	0
+56	0	0	0
+56	0	0	0
+56	0	0	0
+56	275	0.641709172678	304
+56	277	0.642157172678	0
+57	0	0	0
+57	53	0.059689043177	1
+57	132	0.387357780268	2
+57	219	0.479681180402	3
+58	0	0	0
+59	0	0	0
+60	0	0	0
+60	0	0	0
+60	0	0	0
+60	0	0	0
+60	0	0	5e-06
+60	39	0.057993096914	0
+60	39	0.057993096914	0.05
+60	63	0.059689096914	5e-06
+60	74	0.059881100551	0.05
+60	91	0.060233100551	5e-06
+60	118	0.385661796198	0.05
+60	138	0.387357796198	5e-06
+60	157	0.387549837642	0.05
+60	174	0.387901837642	5e-06
+60	205	0.477985233425	0.05
+60	229	0.479681233425	5e-06
+60	240	0.479873237776	0.05
+60	257	0.480225237776	5e-06
+60	284	0.642349230052	0.05
+60	304	0.644045230052	5e-06
+60	326	0.644237333541	0.05
+60	346	0.644589333541	5e-06
+60	360	0.84439374409	0
+60	360	0.84439374409	0
+60	360	0.84439374409	0.005
+60	360	0.84439374409	0.005
+60	361	0.84458574409	0
+60	361	0.84458574409	0.075
+61	0	0	0
+61	0	0	0
+61	0	0	0
+61	0	0	0
+61	0	0	5e-06
+61	32	0.05799303041	0
+61	32	0.05799303041	0.05
+61	46	0.05968903041	5e-06
+61	70	0.05988106804	0.05
+61	83	0.06023306804	5e-06
+61	120	0.385661804972	0.05
+61	142	0.387357804972	5e-06
+61	153	0.387549805131	0.05
+61	166	0.387901805131	5e-06
+61	202	0.477985191536	0.05
+61	223	0.479681191536	5e-06
+61	236	0.479873205265	0.05
+61	249	0.480225205265	5e-06
+61	280	0.642349197541	0.05
+61	293	0.644045197541	5e-06
+61	320	0.644237266427	0.05
+61	334	0.644589266427	5e-06
+62	0	0	0
+62	0	0	0
+62	0	0	0
+62	0	0	0
+62	0	0	5e-06
+62	40	0.057993098321	0
+62	40	0.057993098321	0.05
+62	65	0.059689098321	5e-06
+62	78	0.059881115222	0.05
+62	99	0.060233115222	5e-06
+62	111	0.385469708223	0
+62	111	0.385469708223	0
+62	111	0.385469708223	0.005
+62	111	0.385469708223	0.005
+62	112	0.385661708223	0
+62	112	0.385661708223	0.075
+62	124	0.387357708223	0.005
+62	124	0.387357708223	0
+62	124	0.387357708223	5e-06
+62	124	0.387357708223	5e-06
+62	124	0.387357708223	5e-06
+62	161	0.387549852313	0
+62	161	0.387549852313	0.05
+62	182	0.387901852313	5e-06
+62	201	0.477985187187	0.05
+62	221	0.479681187187	5e-06
+62	244	0.479873252447	0.05
+62	265	0.480225252447	5e-06
+62	288	0.642349244723	0.05
+62	312	0.644045244723	5e-06
+62	328	0.644237351698	0.05
+62	350	0.644589351698	5e-06
+63	0	0	0
+63	0	0	0
+63	0	0	0
+63	0	0	0
+63	0	0	5e-06
+63	28	0.057800975726	0
+63	28	0.057800975726	0
+63	28	0.057800975726	0.005
+63	29	0.057992975726	0
+63	29	0.057992975726	0.075
+63	41	0.059688975726	0.005
+63	41	0.059688975726	0
+63	41	0.059688975726	5e-06
+63	41	0.059688975726	5e-06
+63	41	0.059688975726	5e-06
+63	75	0.059881110628	0
+63	75	0.059881110628	0.05
+63	93	0.060233110628	5e-06
+63	122	0.385661830818	0.05
+63	146	0.387357830818	5e-06
+63	158	0.387549847719	0.05
+63	176	0.387901847719	5e-06
+63	199	0.477985177834	0.05
+63	214	0.479681177834	5e-06
+63	241	0.479873247853	0.05
+63	259	0.480225247853	5e-06
+63	285	0.642349240129	0.05
+63	306	0.644045240129	5e-06
+63	318	0.644237253734	0.05
+63	330	0.644589253734	5e-06
+64	0	0	0
+64	0	0	0
+64	0	0	0
+64	0	0	0
+64	0	0	5e-06
+64	33	0.057993041905	0
+64	33	0.057993041905	0.05
+64	48	0.059689041905	5e-06
+64	76	0.059881111924	0.05
+64	95	0.060233111924	5e-06
+64	117	0.385661783755	0.05
+64	136	0.387357783755	5e-06
+64	159	0.387549849015	0.05
+64	178	0.387901849015	5e-06
+64	194	0.477793111655	0
+64	194	0.477793111655	0
+64	194	0.477793111655	0.005
+64	194	0.477793111655	0.005
+64	195	0.477985111655	0
+64	195	0.477985111655	0.075
+64	207	0.479681111655	0.005
+64	207	0.479681111655	0
+64	207	0.479681111655	5e-06
+64	207	0.479681111655	5e-06
+64	207	0.479681111655	5e-06
+64	242	0.479873249149	0
+64	242	0.479873249149	0.05
+64	261	0.480225249149	5e-06
+64	286	0.642349241425	0.05
+64	308	0.644045241425	5e-06
+64	323	0.644237309296	0.05
+64	340	0.644589309296	5e-06
+65	0	0	0
+65	0	0	0
+65	0	0	0
+65	0	0	0
+65	0	0	5e-06
+65	38	0.057993093093	0
+65	38	0.057993093093	0.05
+65	61	0.059689093093	5e-06
+65	77	0.059881114535	0.05
+65	97	0.060233114535	5e-06
+65	123	0.385661833401	0.05
+65	148	0.387357833401	5e-06
+65	160	0.387549851626	0.05
+65	180	0.387901851626	5e-06
+65	206	0.477985251539	0.05
+65	231	0.479681251539	5e-06
+65	243	0.47987325176	0.05
+65	263	0.48022525176	5e-06
+65	287	0.642349244036	0.05
+65	310	0.644045244036	5e-06
+65	325	0.644237324387	0.05
+65	344	0.644589324387	5e-06
+66	0	0	0
+66	0	0	0
+66	0	0	0
+66	0	0	0
+66	0	0	5e-06
+66	30	0.057993000072	0
+66	30	0.057993000072	0.05
+66	42	0.059689000072	5e-06
+66	73	0.059881099887	0.05
+66	89	0.060233099887	5e-06
+66	121	0.385661830533	0.05
+66	144	0.387357830533	5e-06
+66	156	0.387549836978	0.05
+66	172	0.387901836978	5e-06
+66	203	0.477985191563	0.05
+66	225	0.479681191563	5e-06
+66	239	0.479873237112	0.05
+66	255	0.480225237112	5e-06
+66	283	0.642349229388	0.05
+66	299	0.644045229388	5e-06
+66	300	0.644045229388	0
+66	300	0.644045229388	0
+66	300	0.644045229388	0.005
+66	300	0.644045229388	0.005
+66	317	0.644237229388	0
+66	317	0.644237229388	0.075
+66	329	0.644589229388	0.005
+66	329	0.644589229388	0
+66	329	0.644589229388	5e-06
+66	329	0.644589229388	5e-06
+66	329	0.644589229388	5e-06
+67	0	0	0
+67	0	0	0
+67	0	0	0
+67	0	0	0
+67	0	0	5e-06
+67	31	0.057993009013	0
+67	31	0.057993009013	0.05
+67	44	0.059689009013	5e-06
+67	72	0.05988108139	0.05
+67	87	0.06023308139	5e-06
+67	119	0.385661798058	0.05
+67	140	0.387357798058	5e-06
+67	155	0.387549818481	0.05
+67	170	0.387901818481	5e-06
+67	197	0.477985158213	0.05
+67	210	0.479681158213	5e-06
+67	238	0.479873218615	0.05
+67	253	0.480225218615	5e-06
+67	282	0.642349210891	0.05
+67	297	0.644045210891	5e-06
+67	319	0.644237265146	0.05
+67	332	0.644589265146	5e-06
+68	0	0	0
+68	0	0	0
+68	0	0	0
+68	0	0	0
+68	0	0	5e-06
+68	36	0.057993062365	0
+68	36	0.057993062365	0.05
+68	57	0.059689062365	5e-06
+68	69	0.059881064833	0.05
+68	81	0.060233064833	5e-06
+68	116	0.38566178296	0.05
+68	134	0.38735778296	5e-06
+68	152	0.387549801924	0.05
+68	164	0.387901801924	5e-06
+68	204	0.477985200309	0.05
+68	227	0.479681200309	5e-06
+68	235	0.479873202058	0.05
+68	247	0.480225202058	5e-06
+68	279	0.642349194334	0.05
+68	291	0.644045194334	5e-06
+68	322	0.644237301487	0.05
+68	338	0.644589301487	5e-06
+69	0	0	0
+69	0	0	0
+69	0	0	0
+69	0	0	0
+69	0	0	5e-06
+69	35	0.057993055511	0
+69	35	0.057993055511	0.05
+69	55	0.059689055511	5e-06
+69	71	0.059881080704	0.05
+69	85	0.060233080704	5e-06
+69	114	0.38566175112	0.05
+69	127	0.38735775112	5e-06
+69	154	0.387549817795	0.05
+69	168	0.387901817795	5e-06
+69	196	0.477985156219	0.05
+69	208	0.479681156219	5e-06
+69	237	0.479873217929	0.05
+69	251	0.480225217929	5e-06
+69	281	0.642349210205	0.05
+69	295	0.644045210205	5e-06
+69	324	0.644237309519	0.05
+69	342	0.644589309519	5e-06
+70	0	0	0
+70	0	0	0
+70	0	0	0
+70	0	0	0
+70	0	0	5e-06
+70	37	0.057993091266	0
+70	37	0.057993091266	0.05
+70	59	0.059689091266	5e-06
+70	79	0.059881125463	0.05
+70	101	0.060233125463	5e-06
+70	113	0.385661739888	0.05
+70	125	0.387357739888	5e-06
+70	162	0.387549862554	0.05
+70	184	0.387901862554	5e-06
+70	198	0.47798516771	0.05
+70	212	0.47968116771	5e-06
+70	245	0.479873262688	0.05
+70	267	0.480225262688	5e-06
+70	289	0.642349254964	0.05
+70	314	0.644045254964	5e-06
+70	327	0.644237350948	0.05
+70	348	0.644589350948	5e-06
+71	0	0	0
+71	0	0	0
+71	0	0	0
+71	0	0	0
+71	0	0	5e-06
+71	34	0.057993043177	0
+71	34	0.057993043177	0.05
+71	50	0.059689043177	5e-06
+71	51	0.059689043177	0
+71	51	0.059689043177	0
+71	51	0.059689043177	0.005
+71	51	0.059689043177	0.005
+71	68	0.059881043177	0
+71	68	0.059881043177	0.075
+71	80	0.060233043177	0.005
+71	80	0.060233043177	0
+71	80	0.060233043177	5e-06
+71	80	0.060233043177	5e-06
+71	80	0.060233043177	5e-06
+71	115	0.385661780268	0
+71	115	0.385661780268	0.05
+71	129	0.387357780268	5e-06
+71	130	0.387357780268	0
+71	130	0.387357780268	0
+71	130	0.387357780268	0.005
+71	130	0.387357780268	0.005
+71	151	0.387549780268	0
+71	151	0.387549780268	0.075
+71	163	0.387901780268	0.005
+71	163	0.387901780268	0
+71	163	0.387901780268	5e-06
+71	163	0.387901780268	5e-06
+71	163	0.387901780268	5e-06
+71	200	0.477985180402	0
+71	200	0.477985180402	0.05
+71	216	0.479681180402	5e-06
+71	217	0.479681180402	0
+71	217	0.479681180402	0
+71	217	0.479681180402	0.005
+71	217	0.479681180402	0.005
+71	234	0.479873180402	0
+71	234	0.479873180402	0.075
+71	246	0.480225180402	0.005
+71	246	0.480225180402	0
+71	246	0.480225180402	5e-06
+71	246	0.480225180402	5e-06
+71	246	0.480225180402	5e-06
+71	277	0.642157172678	0
+71	277	0.642157172678	0
+71	277	0.642157172678	0.005
+71	278	0.642349172678	0
+71	278	0.642349172678	0.075
+71	290	0.644045172678	0.005
+71	290	0.644045172678	0
+71	290	0.644045172678	5e-06
+71	290	0.644045172678	5e-06
+71	290	0.644045172678	5e-06
+71	321	0.644237286098	0
+71	321	0.644237286098	0.05
+71	336	0.644589286098	5e-06
+72	0	0	0
+72	0	0	0
+72	0	0	2
+72	360	0.84439374409	3
+73	0	0	0
+73	0	0	0
+73	0	0	0
+73	0	0	5e-06
+73	39	0.057993096914	0
+73	39	0.057993096914	0.05
+73	63	0.059689096914	5e-06
+73	74	0.059881100551	0.05
+73	91	0.060233100551	5e-06
+73	118	0.385661796198	0.05
+73	138	0.387357796198	5e-06
+73	157	0.387549837642	0.05
+73	174	0.387901837642	5e-06
+73	205	0.477985233425	0.05
+73	229	0.479681233425	5e-06
+73	240	0.479873237776	0.05
+73	257	0.480225237776	5e-06
+73	284	0.642349230052	0.05
+73	304	0.644045230052	5e-06
+73	326	0.644237333541	0.05
+73	346	0.644589333541	5e-06
+73	360	0.84439374409	0
+73	360	0.84439374409	0
+73	360	0.84439374409	0.005
+73	360	0.84439374409	0.005
+73	361	0.84458574409	0
+73	361	0.84458574409	0.075
+74	0	0	0
+74	0	0	0
+74	0	0	2
+75	0	0	0
+75	0	0	0
+75	0	0	0
+75	0	0	5e-06
+75	32	0.05799303041	0
+75	32	0.05799303041	0.05
+75	46	0.05968903041	5e-06
+75	70	0.05988106804	0.05
+75	83	0.06023306804	5e-06
+75	120	0.385661804972	0.05
+75	142	0.387357804972	5e-06
+75	153	0.387549805131	0.05
+75	166	0.387901805131	5e-06
+75	202	0.477985191536	0.05
+75	223	0.479681191536	5e-06
+75	236	0.479873205265	0.05
+75	249	0.480225205265	5e-06
+75	280	0.642349197541	0.05
+75	293	0.644045197541	5e-06
+75	320	0.644237266427	0.05
+75	334	0.644589266427	5e-06
+76	0	0	0
+76	0	0	0
+76	0	0	2
+76	111	0.385469708223	3
+76	124	0.387357708223	2
+77	0	0	0
+77	0	0	0
+77	0	0	0
+77	0	0	5e-06
+77	40	0.057993098321	0
+77	40	0.057993098321	0.05
+77	65	0.059689098321	5e-06
+77	78	0.059881115222	0.05
+77	99	0.060233115222	5e-06
+77	111	0.385469708223	0
+77	111	0.385469708223	0
+77	111	0.385469708223	0.005
+77	111	0.385469708223	0.005
+77	112	0.385661708223	0
+77	112	0.385661708223	0.075
+77	124	0.387357708223	0.005
+77	124	0.387357708223	0
+77	124	0.387357708223	5e-06
+77	124	0.387357708223	5e-06
+77	124	0.387357708223	5e-06
+77	161	0.387549852313	0
+77	161	0.387549852313	0.05
+77	182	0.387901852313	5e-06
+77	201	0.477985187187	0.05
+77	221	0.479681187187	5e-06
+77	244	0.479873252447	0.05
+77	265	0.480225252447	5e-06
+77	288	0.642349244723	0.05
+77	312	0.644045244723	5e-06
+77	328	0.644237351698	0.05
+77	350	0.644589351698	5e-06
+78	0	0	0
+78	0	0	0
+78	0	0	2
+78	28	0.057800975726	3
+78	41	0.059688975726	2
+79	0	0	0
+79	0	0	0
+79	0	0	0
+79	0	0	5e-06
+79	28	0.057800975726	0
+79	28	0.057800975726	0
+79	28	0.057800975726	0.005
+79	29	0.057992975726	0
+79	29	0.057992975726	0.075
+79	41	0.059688975726	0.005
+79	41	0.059688975726	0
+79	41	0.059688975726	5e-06
+79	41	0.059688975726	5e-06
+79	41	0.059688975726	5e-06
+79	75	0.059881110628	0
+79	75	0.059881110628	0.05
+79	93	0.060233110628	5e-06
+79	122	0.385661830818	0.05
+79	146	0.387357830818	5e-06
+79	158	0.387549847719	0.05
+79	176	0.387901847719	5e-06
+79	199	0.477985177834	0.05
+79	214	0.479681177834	5e-06
+79	241	0.479873247853	0.05
+79	259	0.480225247853	5e-06
+79	285	0.642349240129	0.05
+79	306	0.644045240129	5e-06
+79	318	0.644237253734	0.05
+79	330	0.644589253734	5e-06
+80	0	0	0
+80	0	0	0
+80	0	0	2
+80	194	0.477793111655	3
+80	207	0.479681111655	2
+81	0	0	0
+81	0	0	0
+81	0	0	0
+81	0	0	5e-06
+81	33	0.057993041905	0
+81	33	0.057993041905	0.05
+81	48	0.059689041905	5e-06
+81	76	0.059881111924	0.05
+81	95	0.060233111924	5e-06
+81	117	0.385661783755	0.05
+81	136	0.387357783755	5e-06
+81	159	0.387549849015	0.05
+81	178	0.387901849015	5e-06
+81	194	0.477793111655	0
+81	194	0.477793111655	0
+81	194	0.477793111655	0.005
+81	194	0.477793111655	0.005
+81	195	0.477985111655	0
+81	195	0.477985111655	0.075
+81	207	0.479681111655	0.005
+81	207	0.479681111655	0
+81	207	0.479681111655	5e-06
+81	207	0.479681111655	5e-06
+81	207	0.479681111655	5e-06
+81	242	0.479873249149	0
+81	242	0.479873249149	0.05
+81	261	0.480225249149	5e-06
+81	286	0.642349241425	0.05
+81	308	0.644045241425	5e-06
+81	323	0.644237309296	0.05
+81	340	0.644589309296	5e-06
+82	0	0	0
+82	0	0	0
+82	0	0	2
+83	0	0	0
+83	0	0	0
+83	0	0	0
+83	0	0	5e-06
+83	38	0.057993093093	0
+83	38	0.057993093093	0.05
+83	61	0.059689093093	5e-06
+83	77	0.059881114535	0.05
+83	97	0.060233114535	5e-06
+83	123	0.385661833401	0.05
+83	148	0.387357833401	5e-06
+83	160	0.387549851626	0.05
+83	180	0.387901851626	5e-06
+83	206	0.477985251539	0.05
+83	231	0.479681251539	5e-06
+83	243	0.47987325176	0.05
+83	263	0.48022525176	5e-06
+83	287	0.642349244036	0.05
+83	310	0.644045244036	5e-06
+83	325	0.644237324387	0.05
+83	344	0.644589324387	5e-06
+84	0	0	0
+84	0	0	0
+84	0	0	2
+84	300	0.644045229388	3
+84	329	0.644589229388	2
+85	0	0	0
+85	0	0	0
+85	0	0	0
+85	0	0	5e-06
+85	30	0.057993000072	0
+85	30	0.057993000072	0.05
+85	42	0.059689000072	5e-06
+85	73	0.059881099887	0.05
+85	89	0.060233099887	5e-06
+85	121	0.385661830533	0.05
+85	144	0.387357830533	5e-06
+85	156	0.387549836978	0.05
+85	172	0.387901836978	5e-06
+85	203	0.477985191563	0.05
+85	225	0.479681191563	5e-06
+85	239	0.479873237112	0.05
+85	255	0.480225237112	5e-06
+85	283	0.642349229388	0.05
+85	299	0.644045229388	5e-06
+85	300	0.644045229388	0
+85	300	0.644045229388	0
+85	300	0.644045229388	0.005
+85	300	0.644045229388	0.005
+85	317	0.644237229388	0
+85	317	0.644237229388	0.075
+85	329	0.644589229388	0.005
+85	329	0.644589229388	0
+85	329	0.644589229388	5e-06
+85	329	0.644589229388	5e-06
+85	329	0.644589229388	5e-06
+86	0	0	0
+86	0	0	0
+86	0	0	2
+87	0	0	0
+87	0	0	0
+87	0	0	0
+87	0	0	5e-06
+87	31	0.057993009013	0
+87	31	0.057993009013	0.05
+87	44	0.059689009013	5e-06
+87	72	0.05988108139	0.05
+87	87	0.06023308139	5e-06
+87	119	0.385661798058	0.05
+87	140	0.387357798058	5e-06
+87	155	0.387549818481	0.05
+87	170	0.387901818481	5e-06
+87	197	0.477985158213	0.05
+87	210	0.479681158213	5e-06
+87	238	0.479873218615	0.05
+87	253	0.480225218615	5e-06
+87	282	0.642349210891	0.05
+87	297	0.644045210891	5e-06
+87	319	0.644237265146	0.05
+87	332	0.644589265146	5e-06
+88	0	0	0
+88	0	0	0
+88	0	0	2
+89	0	0	0
+89	0	0	0
+89	0	0	0
+89	0	0	5e-06
+89	36	0.057993062365	0
+89	36	0.057993062365	0.05
+89	57	0.059689062365	5e-06
+89	69	0.059881064833	0.05
+89	81	0.060233064833	5e-06
+89	116	0.38566178296	0.05
+89	134	0.38735778296	5e-06
+89	152	0.387549801924	0.05
+89	164	0.387901801924	5e-06
+89	204	0.477985200309	0.05
+89	227	0.479681200309	5e-06
+89	235	0.479873202058	0.05
+89	247	0.480225202058	5e-06
+89	279	0.642349194334	0.05
+89	291	0.644045194334	5e-06
+89	322	0.644237301487	0.05
+89	338	0.644589301487	5e-06
+90	0	0	0
+90	0	0	0
+90	0	0	2
+91	0	0	0
+91	0	0	0
+91	0	0	0
+91	0	0	5e-06
+91	35	0.057993055511	0
+91	35	0.057993055511	0.05
+91	55	0.059689055511	5e-06
+91	71	0.059881080704	0.05
+91	85	0.060233080704	5e-06
+91	114	0.38566175112	0.05
+91	127	0.38735775112	5e-06
+91	154	0.387549817795	0.05
+91	168	0.387901817795	5e-06
+91	196	0.477985156219	0.05
+91	208	0.479681156219	5e-06
+91	237	0.479873217929	0.05
+91	251	0.480225217929	5e-06
+91	281	0.642349210205	0.05
+91	295	0.644045210205	5e-06
+91	324	0.644237309519	0.05
+91	342	0.644589309519	5e-06
+92	0	0	0
+92	0	0	0
+92	0	0	2
+93	0	0	0
+93	0	0	0
+93	0	0	0
+93	0	0	5e-06
+93	37	0.057993091266	0
+93	37	0.057993091266	0.05
+93	59	0.059689091266	5e-06
+93	79	0.059881125463	0.05
+93	101	0.060233125463	5e-06
+93	113	0.385661739888	0.05
+93	125	0.387357739888	5e-06
+93	162	0.387549862554	0.05
+93	184	0.387901862554	5e-06
+93	198	0.47798516771	0.05
+93	212	0.47968116771	5e-06
+93	245	0.479873262688	0.05
+93	267	0.480225262688	5e-06
+93	289	0.642349254964	0.05
+93	314	0.644045254964	5e-06
+93	327	0.644237350948	0.05
+93	348	0.644589350948	5e-06
+94	0	0	0
+94	0	0	0
+94	0	0	2
+94	51	0.059689043177	3
+94	80	0.060233043177	2
+94	130	0.387357780268	3
+94	163	0.387901780268	2
+94	217	0.479681180402	3
+94	246	0.480225180402	2
+94	277	0.642157172678	3
+94	290	0.644045172678	2
+95	0	0	0
+95	0	0	0
+95	0	0	0
+95	0	0	5e-06
+95	34	0.057993043177	0
+95	34	0.057993043177	0.05
+95	50	0.059689043177	5e-06
+95	51	0.059689043177	0
+95	51	0.059689043177	0
+95	51	0.059689043177	0.005
+95	51	0.059689043177	0.005
+95	68	0.059881043177	0
+95	68	0.059881043177	0.075
+95	80	0.060233043177	0.005
+95	80	0.060233043177	0
+95	80	0.060233043177	5e-06
+95	80	0.060233043177	5e-06
+95	80	0.060233043177	5e-06
+95	115	0.385661780268	0
+95	115	0.385661780268	0.05
+95	129	0.387357780268	5e-06
+95	130	0.387357780268	0
+95	130	0.387357780268	0
+95	130	0.387357780268	0.005
+95	130	0.387357780268	0.005
+95	151	0.387549780268	0
+95	151	0.387549780268	0.075
+95	163	0.387901780268	0.005
+95	163	0.387901780268	0
+95	163	0.387901780268	5e-06
+95	163	0.387901780268	5e-06
+95	163	0.387901780268	5e-06
+95	200	0.477985180402	0
+95	200	0.477985180402	0.05
+95	216	0.479681180402	5e-06
+95	217	0.479681180402	0
+95	217	0.479681180402	0
+95	217	0.479681180402	0.005
+95	217	0.479681180402	0.005
+95	234	0.479873180402	0
+95	234	0.479873180402	0.075
+95	246	0.480225180402	0.005
+95	246	0.480225180402	0
+95	246	0.480225180402	5e-06
+95	246	0.480225180402	5e-06
+95	246	0.480225180402	5e-06
+95	277	0.642157172678	0
+95	277	0.642157172678	0
+95	277	0.642157172678	0.005
+95	278	0.642349172678	0
+95	278	0.642349172678	0.075
+95	290	0.644045172678	0.005
+95	290	0.644045172678	0
+95	290	0.644045172678	5e-06
+95	290	0.644045172678	5e-06
+95	290	0.644045172678	5e-06
+95	321	0.644237286098	0
+95	321	0.644237286098	0.05
+95	336	0.644589286098	5e-06
+96	0	0	1
+96	39	0.057993096914	3
+96	63	0.059689096914	1
+96	74	0.059881100551	3
+96	91	0.060233100551	1
+96	118	0.385661796198	3
+96	138	0.387357796198	1
+96	157	0.387549837642	3
+96	174	0.387901837642	1
+96	205	0.477985233425	3
+96	229	0.479681233425	1
+96	240	0.479873237776	3
+96	257	0.480225237776	1
+96	284	0.642349230052	3
+96	304	0.644045230052	1
+96	326	0.644237333541	3
+96	346	0.644589333541	1
+96	360	0.84439374409	0
+97	0	0	1
+97	32	0.05799303041	3
+97	46	0.05968903041	1
+97	70	0.05988106804	3
+97	83	0.06023306804	1
+97	120	0.385661804972	3
+97	142	0.387357804972	1
+97	153	0.387549805131	3
+97	166	0.387901805131	1
+97	202	0.477985191536	3
+97	223	0.479681191536	1
+97	236	0.479873205265	3
+97	249	0.480225205265	1
+97	280	0.642349197541	3
+97	293	0.644045197541	1
+97	320	0.644237266427	3
+97	334	0.644589266427	1
+98	0	0	1
+98	40	0.057993098321	3
+98	65	0.059689098321	1
+98	78	0.059881115222	3
+98	99	0.060233115222	1
+98	111	0.385469708223	0
+98	124	0.387357708223	1
+98	161	0.387549852313	3
+98	182	0.387901852313	1
+98	201	0.477985187187	3
+98	221	0.479681187187	1
+98	244	0.479873252447	3
+98	265	0.480225252447	1
+98	288	0.642349244723	3
+98	312	0.644045244723	1
+98	328	0.644237351698	3
+98	350	0.644589351698	1
+99	0	0	1
+99	28	0.057800975726	0
+99	41	0.059688975726	1
+99	75	0.059881110628	3
+99	93	0.060233110628	1
+99	122	0.385661830818	3
+99	146	0.387357830818	1
+99	158	0.387549847719	3
+99	176	0.387901847719	1
+99	199	0.477985177834	3
+99	214	0.479681177834	1
+99	241	0.479873247853	3
+99	259	0.480225247853	1
+99	285	0.642349240129	3
+99	306	0.644045240129	1
+99	318	0.644237253734	3
+99	330	0.644589253734	1
+100	0	0	1
+100	33	0.057993041905	3
+100	48	0.059689041905	1
+100	76	0.059881111924	3
+100	95	0.060233111924	1
+100	117	0.385661783755	3
+100	136	0.387357783755	1
+100	159	0.387549849015	3
+100	178	0.387901849015	1
+100	194	0.477793111655	0
+100	207	0.479681111655	1
+100	242	0.479873249149	3
+100	261	0.480225249149	1
+100	286	0.642349241425	3
+100	308	0.644045241425	1
+100	323	0.644237309296	3
+100	340	0.644589309296	1
+101	0	0	1
+101	38	0.057993093093	3
+101	61	0.059689093093	1
+101	77	0.059881114535	3
+101	97	0.060233114535	1
+101	123	0.385661833401	3
+101	148	0.387357833401	1
+101	160	0.387549851626	3
+101	180	0.387901851626	1
+101	206	0.477985251539	3
+101	231	0.479681251539	1
+101	243	0.47987325176	3
+101	263	0.48022525176	1
+101	287	0.642349244036	3
+101	310	0.644045244036	1
+101	325	0.644237324387	3
+101	344	0.644589324387	1
+102	0	0	1
+102	30	0.057993000072	3
+102	42	0.059689000072	1
+102	73	0.059881099887	3
+102	89	0.060233099887	1
+102	121	0.385661830533	3
+102	144	0.387357830533	1
+102	156	0.387549836978	3
+102	172	0.387901836978	1
+102	203	0.477985191563	3
+102	225	0.479681191563	1
+102	239	0.479873237112	3
+102	255	0.480225237112	1
+102	283	0.642349229388	3
+102	299	0.644045229388	1
+102	300	0.644045229388	0
+102	329	0.644589229388	1
+103	0	0	1
+103	31	0.057993009013	3
+103	44	0.059689009013	1
+103	72	0.05988108139	3
+103	87	0.06023308139	1
+103	119	0.385661798058	3
+103	140	0.387357798058	1
+103	155	0.387549818481	3
+103	170	0.387901818481	1
+103	197	0.477985158213	3
+103	210	0.479681158213	1
+103	238	0.479873218615	3
+103	253	0.480225218615	1
+103	282	0.642349210891	3
+103	297	0.644045210891	1
+103	319	0.644237265146	3
+103	332	0.644589265146	1
+104	0	0	1
+104	36	0.057993062365	3
+104	57	0.059689062365	1
+104	69	0.059881064833	3
+104	81	0.060233064833	1
+104	116	0.38566178296	3
+104	134	0.38735778296	1
+104	152	0.387549801924	3
+104	164	0.387901801924	1
+104	204	0.477985200309	3
+104	227	0.479681200309	1
+104	235	0.479873202058	3
+104	247	0.480225202058	1
+104	279	0.642349194334	3
+104	291	0.644045194334	1
+104	322	0.644237301487	3
+104	338	0.644589301487	1
+105	0	0	1
+105	35	0.057993055511	3
+105	55	0.059689055511	1
+105	71	0.059881080704	3
+105	85	0.060233080704	1
+105	114	0.38566175112	3
+105	127	0.38735775112	1
+105	154	0.387549817795	3
+105	168	0.387901817795	1
+105	196	0.477985156219	3
+105	208	0.479681156219	1
+105	237	0.479873217929	3
+105	251	0.480225217929	1
+105	281	0.642349210205	3
+105	295	0.644045210205	1
+105	324	0.644237309519	3
+105	342	0.644589309519	1
+106	0	0	1
+106	37	0.057993091266	3
+106	59	0.059689091266	1
+106	79	0.059881125463	3
+106	101	0.060233125463	1
+106	113	0.385661739888	3
+106	125	0.387357739888	1
+106	162	0.387549862554	3
+106	184	0.387901862554	1
+106	198	0.47798516771	3
+106	212	0.47968116771	1
+106	245	0.479873262688	3
+106	267	0.480225262688	1
+106	289	0.642349254964	3
+106	314	0.644045254964	1
+106	327	0.644237350948	3
+106	348	0.644589350948	1
+107	0	0	1
+107	34	0.057993043177	3
+107	50	0.059689043177	1
+107	51	0.059689043177	0
+107	80	0.060233043177	1
+107	115	0.385661780268	3
+107	129	0.387357780268	1
+107	130	0.387357780268	0
+107	163	0.387901780268	1
+107	200	0.477985180402	3
+107	216	0.479681180402	1
+107	217	0.479681180402	0
+107	246	0.480225180402	1
+107	277	0.642157172678	0
+107	290	0.644045172678	1
+107	321	0.644237286098	3
+107	336	0.644589286098	1
+108	22	0.056712975726	10
+109	24	0.056712975726	18
+110	26	0.056712975726	304
+111	28	0.057800975726	-2.8900487863e-07
+111	29	0.057992975726	-1.24900487863e-06
+111	41	0.059688975726	-0.00012844900487863
+111	75	0.059881110628	-0.00012844996555314
+111	93	0.060233110628	-0.00014604996555314
+111	122	0.385661830818	-0.00014767710915409
+111	146	0.387357830818	-0.00023247710915409
+111	158	0.387549847719	-0.0002324780692386
+111	176	0.387901847719	-0.0002500780692386
+111	199	0.477985177834	-0.00025052848588917
+111	214	0.479681177834	-0.00033532848588917
+111	241	0.479873247853	-0.00033532944623927
+111	259	0.480225247853	-0.00035292944623927
+111	285	0.642349240129	-0.00035374006620065
+111	306	0.644045240129	-0.00043854006620065
+111	318	0.644237253734	-0.00043854102626867
+111	330	0.644589253734	-0.00045614102626867
+112	28	0.057800975726	1
+112	29	0.057992975726	2
+112	41	0.059688975726	1
+112	41	0.059688975726	0
+113	28	0.057800975726	0.001088
+114	28	0.057800975726	304
+115	30	0.057993000072	-2.8996500036e-07
+115	42	0.059689000072	-8.508996500036e-05
+115	73	0.059881099887	-8.5090925499435e-05
+115	89	0.060233099887	-0.00010269092549943
+115	121	0.385661830533	-0.00010431806915266
+115	144	0.387357830533	-0.00018911806915266
+115	156	0.387549836978	-0.00018911902918489
+115	172	0.387901836978	-0.00020671902918489
+115	203	0.477985191563	-0.00020716944595781
+115	225	0.479681191563	-0.00029196944595781
+115	239	0.479873237112	-0.00029197040618556
+115	255	0.480225237112	-0.00030957040618556
+115	283	0.642349229388	-0.00031038102614694
+115	299	0.644045229388	-0.00039518102614694
+115	317	0.644237229388	-0.00039614102614694
+115	329	0.644589229388	-0.00042254102614694
+116	31	0.057993009013	-2.89965045065e-07
+116	44	0.059689009013	-8.5089965045065e-05
+116	72	0.05988108139	-8.509092540695e-05
+116	87	0.06023308139	-0.00010269092540695
+116	119	0.385661798058	-0.00010431806899029
+116	140	0.387357798058	-0.00018911806899029
+116	155	0.387549818481	-0.0001891190290924
+116	170	0.387901818481	-0.0002067190290924
+116	197	0.477985158213	-0.00020716944579106
+116	210	0.479681158213	-0.00029196944579106
+116	238	0.479873218615	-0.00029197040609307
+116	253	0.480225218615	-0.00030957040609307
+116	282	0.642349210891	-0.00031038102605445
+116	297	0.644045210891	-0.00039518102605445
+116	319	0.644237265146	-0.00039518198632573
+116	332	0.644589265146	-0.00041278198632573
+117	32	0.05799303041	-2.8996515205e-07
+117	46	0.05968903041	-8.508996515205e-05
+117	70	0.05988106804	-8.50909253402e-05
+117	83	0.06023306804	-0.0001026909253402
+117	120	0.385661804972	-0.00010431806902486
+117	142	0.387357804972	-0.00018911806902486
+117	153	0.387549805131	-0.00018911902902565
+117	166	0.387901805131	-0.00020671902902565
+117	202	0.477985191536	-0.00020716944595768
+117	223	0.479681191536	-0.00029196944595768
+117	236	0.479873205265	-0.00029197040602632
+117	249	0.480225205265	-0.00030957040602632
+117	280	0.642349197541	-0.0003103810259877
+117	293	0.644045197541	-0.0003951810259877
+117	320	0.644237266427	-0.00039518198633213
+117	334	0.644589266427	-0.00041278198633213
+118	33	0.057993041905	-2.89965209525e-07
+118	48	0.059689041905	-8.5089965209525e-05
+118	76	0.059881111924	-8.509092555962e-05
+118	95	0.060233111924	-0.00010269092555962
+118	117	0.385661783755	-0.00010431806891877
+118	136	0.387357783755	-0.00018911806891877
+118	159	0.387549849015	-0.00018911902924507
+118	178	0.387901849015	-0.00020671902924507
+118	194	0.477793111655	-0.00020716848555827
+118	195	0.477985111655	-0.00020812848555827
+118	207	0.479681111655	-0.00033532848555827
+118	242	0.479873249149	-0.00033532944624574
+118	261	0.480225249149	-0.00035292944624574
+118	286	0.642349241425	-0.00035374006620712
+118	308	0.644045241425	-0.00043854006620712
+118	323	0.644237309296	-0.00043854102654648
+118	340	0.644589309296	-0.00045614102654648
+119	34	0.057993043177	-2.89965215885e-07
+119	50	0.059689043177	-8.5089965215885e-05
+119	68	0.059881043177	-8.6049965215885e-05
+119	80	0.060233043177	-0.00011244996521589
+119	115	0.385661780268	-0.00011407710890134
+119	129	0.387357780268	-0.00019887710890134
+119	151	0.387549780268	-0.00019983710890134
+119	163	0.387901780268	-0.00022623710890134
+119	200	0.477985180402	-0.00022668752590201
+119	216	0.479681180402	-0.00031148752590201
+119	234	0.479873180402	-0.00031244752590201
+119	246	0.480225180402	-0.00033884752590201
+119	277	0.642157172678	-0.00033965718586339
+119	278	0.642349172678	-0.00034061718586339
+119	290	0.644045172678	-0.00046781718586339
+119	321	0.644237286098	-0.00046781814643049
+119	336	0.644589286098	-0.00048541814643049
+120	35	0.057993055511	-2.89965277555e-07
+120	55	0.059689055511	-8.5089965277555e-05
+120	71	0.059881080704	-8.509092540352e-05
+120	85	0.060233080704	-0.00010269092540352
+120	114	0.38566175112	-0.0001043180687556
+120	127	0.38735775112	-0.0001891180687556
+120	154	0.387549817795	-0.00018911902908898
+120	168	0.387901817795	-0.00020671902908898
+120	196	0.477985156219	-0.0002071694457811
+120	208	0.479681156219	-0.00029196944578109
+120	237	0.479873217929	-0.00029197040608964
+120	251	0.480225217929	-0.00030957040608964
+120	281	0.642349210205	-0.00031038102605102
+120	295	0.644045210205	-0.00039518102605102
+120	324	0.644237309519	-0.00039518198654759
+120	342	0.644589309519	-0.00041278198654759
+121	36	0.057993062365	-2.89965311825e-07
+121	57	0.059689062365	-8.5089965311825e-05
+121	69	0.059881064833	-8.5090925324165e-05
+121	81	0.060233064833	-0.00010269092532417
+121	116	0.38566178296	-0.0001043180689148
+121	134	0.38735778296	-0.0001891180689148
+121	152	0.387549801924	-0.00018911902900962
+121	164	0.387901801924	-0.00020671902900962
+121	204	0.477985200309	-0.00020716944600155
+121	227	0.479681200309	-0.00029196944600155
+121	235	0.479873202058	-0.00029197040601029
+121	247	0.480225202058	-0.00030957040601029
+121	279	0.642349194334	-0.00031038102597167
+121	291	0.644045194334	-0.00039518102597167
+121	322	0.644237301487	-0.00039518198650744
+121	338	0.644589301487	-0.00041278198650744
+122	37	0.057993091266	-2.8996545633e-07
+122	59	0.059689091266	-8.508996545633e-05
+122	79	0.059881125463	-8.5090925627315e-05
+122	101	0.060233125463	-0.00010269092562732
+122	113	0.385661739888	-0.00010431806869944
+122	125	0.387357739888	-0.00018911806869944
+122	162	0.387549862554	-0.00018911902931277
+122	184	0.387901862554	-0.00020671902931277
+122	198	0.47798516771	-0.00020716944583855
+122	212	0.47968116771	-0.00029196944583855
+122	245	0.479873262688	-0.00029197040631344
+122	267	0.480225262688	-0.00030957040631344
+122	289	0.642349254964	-0.00031038102627482
+122	314	0.644045254964	-0.00039518102627482
+122	327	0.644237350948	-0.00039518198675474
+122	348	0.644589350948	-0.00041278198675474
+123	38	0.057993093093	-2.89965465465e-07
+123	61	0.059689093093	-8.5089965465465e-05
+123	77	0.059881114535	-8.5090925572675e-05
+123	97	0.060233114535	-0.00010269092557268
+123	123	0.385661833401	-0.00010431806916701
+123	148	0.387357833401	-0.00018911806916701
+123	160	0.387549851626	-0.00018911902925813
+123	180	0.387901851626	-0.00020671902925813
+123	206	0.477985251539	-0.0002071694462577
+123	231	0.479681251539	-0.0002919694462577
+123	243	0.47987325176	-0.0002919704062588
+123	263	0.48022525176	-0.0003095704062588
+123	287	0.642349244036	-0.00031038102622018
+123	310	0.644045244036	-0.00039518102622018
+123	325	0.644237324387	-0.00039518198662193
+123	344	0.644589324387	-0.00041278198662193
+124	39	0.057993096914	-2.8996548457e-07
+124	63	0.059689096914	-8.508996548457e-05
+124	74	0.059881100551	-8.5090925502755e-05
+124	91	0.060233100551	-0.00010269092550276
+124	118	0.385661796198	-0.00010431806898099
+124	138	0.387357796198	-0.00018911806898099
+124	157	0.387549837642	-0.00018911902918821
+124	174	0.387901837642	-0.00020671902918821
+124	205	0.477985233425	-0.00020716944616713
+124	229	0.479681233425	-0.00029196944616713
+124	240	0.479873237776	-0.00029197040618888
+124	257	0.480225237776	-0.00030957040618888
+124	284	0.642349230052	-0.00031038102615026
+124	304	0.644045230052	-0.00039518102615026
+124	326	0.644237333541	-0.00039518198666771
+124	346	0.644589333541	-0.00041278198666771
+124	360	0.84439374409	-0.00041378100872045
+124	361	0.84458574409	-0.00041474100872045
+125	40	0.057993098321	-2.89965491605e-07
+125	65	0.059689098321	-8.5089965491605e-05
+125	78	0.059881115222	-8.509092557611e-05
+125	99	0.060233115222	-0.00010269092557611
+125	111	0.385469708223	-0.00010431710854111
+125	112	0.385661708223	-0.00010527710854111
+125	124	0.387357708223	-0.00023247710854111
+125	161	0.387549852313	-0.00023247806926156
+125	182	0.387901852313	-0.00025007806926157
+125	201	0.477985187187	-0.00025052848593594
+125	221	0.479681187187	-0.00033532848593594
+125	244	0.479873252447	-0.00033532944626223
+125	265	0.480225252447	-0.00035292944626223
+125	288	0.642349244723	-0.00035374006622361
+125	312	0.644045244723	-0.00043854006622361
+125	328	0.644237351698	-0.00043854102675849
+125	350	0.644589351698	-0.00045614102675849
+126	43	0.059689000072	47
+126	90	0.060233099887	5
+126	145	0.387357830533	47
+126	173	0.387901836978	5
+126	226	0.479681191563	47
+126	256	0.480225237112	5
+127	45	0.059689009013	47
+127	88	0.06023308139	5
+127	141	0.387357798058	47
+127	171	0.387901818481	5
+127	211	0.479681158213	47
+127	254	0.480225218615	5
+127	298	0.644045210891	47
+127	333	0.644589265146	5
+128	47	0.05968903041	47
+128	84	0.06023306804	5
+128	143	0.387357804972	47
+128	167	0.387901805131	5
+128	224	0.479681191536	47
+128	250	0.480225205265	5
+128	294	0.644045197541	47
+128	335	0.644589266427	5
+129	49	0.059689041905	47
+129	96	0.060233111924	5
+129	137	0.387357783755	47
+129	179	0.387901849015	5
+129	309	0.644045241425	47
+129	341	0.644589309296	5
+130	51	0.059689043177	1
+130	68	0.059881043177	2
+130	80	0.060233043177	1
+130	80	0.060233043177	0
+130	130	0.387357780268	1
+130	151	0.387549780268	2
+130	163	0.387901780268	1
+130	163	0.387901780268	0
+130	217	0.479681180402	1
+130	234	0.479873180402	2
+130	246	0.480225180402	1
+130	246	0.480225180402	0
+130	277	0.642157172678	1
+130	278	0.642349172678	2
+130	290	0.644045172678	1
+130	290	0.644045172678	0
+131	53	0.059689043177	18
+131	132	0.387357780268	18
+131	219	0.479681180402	18
+132	54	0.059689043177	10
+132	133	0.387357780268	10
+132	220	0.479681180402	10
+133	54	0.059689043177	0.002976067451
+133	133	0.387357780268	0.002976072045
+133	220	0.479681180402	0.002016068747
+134	54	0.059689043177	0
+134	133	0.387357780268	0
+134	220	0.479681180402	0
+135	56	0.059689055511	47
+135	86	0.060233080704	5
+135	128	0.38735775112	47
+135	169	0.387901817795	5
+135	209	0.479681156219	47
+135	252	0.480225217929	5
+135	296	0.644045210205	47
+135	343	0.644589309519	5
+136	58	0.059689062365	47
+136	82	0.060233064833	5
+136	135	0.38735778296	47
+136	165	0.387901801924	5
+136	228	0.479681200309	47
+136	248	0.480225202058	5
+136	292	0.644045194334	47
+136	339	0.644589301487	5
+137	60	0.059689091266	47
+137	102	0.060233125463	5
+137	126	0.387357739888	47
+137	185	0.387901862554	5
+137	213	0.47968116771	47
+137	268	0.480225262688	5
+137	315	0.644045254964	47
+137	349	0.644589350948	5
+138	62	0.059689093093	47
+138	98	0.060233114535	5
+138	149	0.387357833401	47
+138	181	0.387901851626	5
+138	232	0.479681251539	47
+138	264	0.48022525176	5
+138	311	0.644045244036	47
+138	345	0.644589324387	5
+139	64	0.059689096914	47
+139	92	0.060233100551	5
+139	139	0.387357796198	47
+139	175	0.387901837642	5
+139	230	0.479681233425	47
+139	258	0.480225237776	5
+139	305	0.644045230052	47
+139	347	0.644589333541	5
+140	66	0.059689098321	47
+140	100	0.060233115222	5
+140	222	0.479681187187	47
+140	266	0.480225252447	5
+140	313	0.644045244723	47
+140	351	0.644589351698	5
+141	105	0.384381708223	10
+142	107	0.384381708223	18
+143	109	0.384381708223	304
+144	109	0.1	0
+144	109	0.2	0
+144	109	0.3	0
+145	111	0.385469708223	1
+145	112	0.385661708223	2
+145	124	0.387357708223	1
+145	124	0.387357708223	0
+146	111	0.385469708223	0.001088
+147	111	0.385469708223	304
+148	111	0.1	0
+148	111	0.2	0
+148	111	0.3	0
+149	133	0.1	800
+149	133	0.2	0
+149	133	0.3	0
+149	220	0.4	800
+150	147	0.387357830818	47
+150	177	0.387901847719	5
+150	215	0.479681177834	47
+150	260	0.480225247853	5
+150	307	0.644045240129	47
+150	331	0.644589253734	5
+151	188	0.477665111655	10
+152	190	0.477665111655	18
+153	192	0.477665111655	304
+154	192	0.1	0
+154	192	0.2	0
+154	192	0.3	0
+154	192	0.4	0
+155	194	0.477793111655	1
+155	195	0.477985111655	2
+155	207	0.479681111655	1
+155	207	0.479681111655	0
+156	194	0.477793111655	0.000128
+157	194	0.477793111655	304
+158	194	0.1	0
+158	194	0.2	0
+158	194	0.3	0
+158	194	0.4	0
+159	271	0.641709172678	10
+160	273	0.641709172678	18
+161	275	0.641709172678	304
+162	275	0.1	0
+162	275	0.2	0
+162	275	0.3	0
+162	275	0.4	0
+162	275	0.5	0
+162	275	0.6	0
+163	277	0.642157172678	0.000448
+164	277	0.642157172678	304
+165	277	0.1	0
+165	277	0.2	0
+165	277	0.3	0
+165	277	0.4	0
+165	277	0.5	0
+165	277	0.6	0
+166	300	0.644045229388	1
+166	317	0.644237229388	2
+166	329	0.644589229388	1
+166	329	0.644589229388	0
+167	302	0.644045229388	18
+168	303	0.644045229388	10
+169	303	0.1	0
+169	303	0.2	0
+169	303	0.3	0
+169	303	0.4	0
+169	303	0.5	0
+169	303	0.6	0
+170	303	0.644045229388	0.00233605671
+171	303	0.644045229388	0
+172	354	0.84426574409	10
+173	356	0.84426574409	18
+174	358	0.84426574409	304
+175	358	0.1	0
+175	358	0.2	0
+175	358	0.3	0
+175	358	0.4	0
+175	358	0.5	0
+175	358	0.6	0
+175	358	0.7	0
+175	358	0.8	0
+176	360	0.84439374409	1
+176	361	0.84458574409	2
+177	360	0.84439374409	0.000128
+178	360	0.84439374409	304
+179	360	0.1	0
+179	360	0.2	0
+179	360	0.3	0
+179	360	0.4	0
+179	360	0.5	0
+179	360	0.6	0
+179	360	0.7	0
+179	360	0.8	0
+
